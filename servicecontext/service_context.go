@@ -17,7 +17,7 @@ type ServiceContext struct {
 	CronComponent      *component.CronComponent
 	InitComponent      *component.InitComponent
 	ShutdownComponent  *component.ShutdownComponent
-	DemoLogic          *logic.DemoLogic
+	TagMatchLogic      *logic.TagMatchLogic
 	TagMatchServiceAPI *service.TagMatchServiceAPIService
 }
 
@@ -39,13 +39,13 @@ func InitServiceContext(ctx context.Context, configEntity *config.ConfigEntity) 
 		cronComponent := component.NewCronConponent()
 		initComponent := component.NewInitComponent(ctx)
 		shutdownComponent := component.NewShutdownComponent(ctx)
-		demoLogic := logic.NewDemoLogic()
-		tagMatchServiceAPI := service.NewTagMatchServiceAPIService(demoLogic)
+		tagMatchLogic := logic.NewTagMatchLogic()
+		tagMatchServiceAPI := service.NewTagMatchServiceAPIService(tagMatchLogic)
 
 		gServiceCtx = &ServiceContext{
 			ShutdownComponent:  shutdownComponent,
 			InitComponent:      initComponent,
-			DemoLogic:          demoLogic,
+			TagMatchLogic:      tagMatchLogic,
 			TagMatchServiceAPI: tagMatchServiceAPI,
 			Logger:             logger,
 			CronComponent:      cronComponent,

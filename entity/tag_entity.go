@@ -1,6 +1,6 @@
 package entity
 
 type Entity struct {
-	Id   string
+	Id   int64
 	Tags []string
 }
