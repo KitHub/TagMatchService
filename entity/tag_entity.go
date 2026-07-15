@@ -1,6 +1,11 @@
 package entity
 
-type Entity struct {
+type TagEntity struct {
+	Tag   string
+	Value string
+}
+
+type BizEntity struct {
 	Id   int64
-	Tags []string
+	Tags []*TagEntity
 }

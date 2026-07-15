@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"sync"
 
@@ -14,7 +15,7 @@ var tagMatchLogic *TagMatchLogic
 var onceTagMatchLogic sync.Once
 
 type tagEntityIndexes struct {
-	data *component.SyncMap[string, *roaring64.Bitmap] // key=tag
+	data *component.SyncMap[string, *roaring64.Bitmap] // key=tag#tagValue
 }
 
 type TagMatchLogic struct {
@@ -32,7 +33,7 @@ func NewTagMatchLogic() *TagMatchLogic {
 	return tagMatchLogic
 }
 
-func (t *TagMatchLogic) AddEntities(ctx context.Context, projectId int64, entities []*entity.Entity) error {
+func (t *TagMatchLogic) AddEntities(ctx context.Context, projectId int64, entities []*entity.BizEntity) error {
 	slog.InfoContext(ctx, "add entities", slog.Any("entities", entities))
 
 	if len(entities) == 0 {
@@ -51,11 +52,12 @@ func (t *TagMatchLogic) AddEntities(ctx context.Context, projectId int64, entiti
 
 	for _, tmpEntity := range entities {
 		for _, tmpTag := range tmpEntity.Tags {
-			tmpBitmap, ok := index.data.Load(tmpTag)
+			key := fmt.Sprintf("%s#%s", tmpTag.Tag, tmpTag.Value)
+			tmpBitmap, ok := index.data.Load(key)
 			if !ok {
 				tmpBitmap = roaring64.New()
 			}
-			index.data.Store(tmpTag, tmpBitmap)
+			index.data.Store(key, tmpBitmap)
 
 			tmpBitmap.Add(uint64(tmpEntity.Id))
 		}
@@ -63,4 +65,8 @@ func (t *TagMatchLogic) AddEntities(ctx context.Context, projectId int64, entiti
 
 	slog.InfoContext(ctx, "add entities done", slog.Any("entities", entities))
 	return nil
+}
+
+func (t *TagMatchLogic) MatchEntities(ctx context.Context, projectId int64, tags []*entity.TagEntity) (entityIds []int64, err error) {
+	return nil, nil
 }
