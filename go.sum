@@ -1,5 +1,5 @@
-github.com/KitHub/protocols v0.1.40 h1:z21KDR//zzNkkvflUPPPzTACs3lLniB26pk1WcWd6W0=
-github.com/KitHub/protocols v0.1.40/go.mod h1:meupYIgfKSyItqSFM+ZS0XNEh4aiYvj49VlfBjYF/Os=
+github.com/KitHub/protocols v0.1.41 h1:UZfhCNCJ7gp5qPVmdHidYLbJzCTsJIcn/Iq1eUBFjeI=
+github.com/KitHub/protocols v0.1.41/go.mod h1:meupYIgfKSyItqSFM+ZS0XNEh4aiYvj49VlfBjYF/Os=
 github.com/RoaringBitmap/roaring/v2 v2.21.0 h1:RKVgkD+c9ouyCydF2PW/mztDyZTsb7ksas/IofnguDg=
 github.com/RoaringBitmap/roaring/v2 v2.21.0/go.mod h1:SfT3of9nYh3vis1dIbCj4Yw6KQGujTN+f345nrN/0JA=
 github.com/bits-and-blooms/bitset v1.24.4 h1:95H15Og1clikBrKr/DuzMXkQzECs1M6hhoGXLwLQOZE=

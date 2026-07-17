@@ -23,13 +23,11 @@ type TagMatchLogic struct {
 	indexes *component.SyncMap[int64, *tagEntityIndexes] // key=projectId
 }
 
-func (t *TagMatchLogic) Hello(ctx context.Context) error {
-	panic("unimplemented")
-}
-
-func NewTagMatchLogic() *TagMatchLogic {
+func NewTagMatchLogic(ctx context.Context) *TagMatchLogic {
 	onceTagMatchLogic.Do(func() {
-		tagMatchLogic = &TagMatchLogic{}
+		tagMatchLogic = &TagMatchLogic{
+			indexes: &component.SyncMap[int64, *tagEntityIndexes]{},
+		}
 	})
 	return tagMatchLogic
 }

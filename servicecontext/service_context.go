@@ -39,7 +39,7 @@ func InitServiceContext(ctx context.Context, configEntity *config.ConfigEntity) 
 		cronComponent := component.NewCronConponent()
 		initComponent := component.NewInitComponent(ctx)
 		shutdownComponent := component.NewShutdownComponent(ctx)
-		tagMatchLogic := logic.NewTagMatchLogic()
+		tagMatchLogic := logic.NewTagMatchLogic(ctx)
 		tagMatchServiceAPI := service.NewTagMatchServiceAPIService(tagMatchLogic)
 
 		gServiceCtx = &ServiceContext{
