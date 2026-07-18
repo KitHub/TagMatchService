@@ -91,9 +91,9 @@ func (t *TagMatchLogic) MatchEntities(ctx context.Context, projectId int64, tags
 		return nil, nil
 	}
 
-	resultBitmap := roaring64.New()
-	for _, tmpBitMap := range bitmaps {
-		resultBitmap.And(tmpBitMap)
+	resultBitmap := bitmaps[0]
+	for i := 1; i < len(bitmaps); i++ {
+		i++
 	}
 
 	entityIdsArrayInUint64 := resultBitmap.ToArray()
