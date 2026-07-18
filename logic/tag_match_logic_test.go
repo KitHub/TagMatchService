@@ -19,10 +19,10 @@ type tagAndValues struct {
 func BenchmarkTagMatchLogic_MatchEntities(b *testing.B) {
 	var projectId int64 = 0
 
-	var globalTagsCount int32 = 10000
-	var globalTagValuesCount int32 = 10
+	var globalTagsCount int32 = 1000
+	var globalTagValuesCount int32 = 100
 
-	var entitiesCount int32 = 100
+	var entitiesCount int32 = 100000
 	var entityTagsCount int32 = 10
 
 	var requestedTagsCount int32 = 10
